@@ -12,7 +12,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.colors.link.text};
     cursor: pointer;
   }
-
+ 
   button {
     border: 0;
     display: inline-block;

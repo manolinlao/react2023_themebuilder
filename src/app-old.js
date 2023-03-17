@@ -1,26 +1,22 @@
 import { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import WebFont from 'webfontloader';
-import { PrimeComponent } from './components/PrimeComponent';
-import { ThemeSelector } from './components/ThemeSelector';
 
 import { useTheme } from './hooks/useTheme';
 import { GlobalStyles } from './theme/GlobalStyles';
+import { ThemeSelector } from './ThemeSelector';
 
 //creamos un Container con styled de styled-components
-const Container = styled.div`
-  margin: 5px auto 5px auto;
-`;
+const Container = styled.div(`margin:5px auto 5px auto`);
 
-export const App = () => {
-  const { actualTheme, isThemeLoaded, getFonts } = useTheme();
-  const [selectedTheme, setSelectedTheme] = useState(actualTheme);
-
-  console.log('APP', actualTheme);
+function App() {
+  const { theme, themeLoaded, getFonts } = useTheme();
+  const [selectedTheme, setSelectedTheme] = useState(theme);
 
   useEffect(() => {
-    setSelectedTheme(actualTheme);
-  }, [isThemeLoaded]);
+    console.log('calling setSelectedTheme', theme, themeLoaded);
+    setSelectedTheme(theme);
+  }, [themeLoaded]);
 
   // load all the fonts
   useEffect(() => {
@@ -29,25 +25,25 @@ export const App = () => {
     WebFont.load({ google: { families: getFonts() } });
   });
 
-  if (!isThemeLoaded) {
+  // render if theme is loaded
+  if (!themeLoaded) {
     return <h5>theme not loaded</h5>;
   }
   return (
     <ThemeProvider theme={selectedTheme}>
       <GlobalStyles />
-      texto normalito
-      <Container>
-        <h5>Container</h5>
-        <p>This is inside the Container</p>
-        source Code:
+      <Container style={{ fontFamily: selectedTheme.font }}>
+        <h1>Theme Builder</h1>
+        This is a theming system with a Theme Switcher and Theme Builder. Do you want to see the
+        source code?{' '}
         <a href='https://github.com/manolinlao/react2023_themebuilder.git' target='_blank'>
           Click here.
         </a>
+        <hr />
+        <ThemeSelector setter={setSelectedTheme} />
       </Container>
-      <hr />
-      <PrimeComponent />
-      <hr />
-      <ThemeSelector setter={setSelectedTheme} />
     </ThemeProvider>
   );
-};
+}
+
+export default App;

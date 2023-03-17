@@ -3,25 +3,28 @@ import { getFromLS, setToLS } from '../utils/storage';
 import _ from 'lodash';
 
 export const useTheme = () => {
-  const themes = getFromLS('all-themes');
-  const [theme, setTheme] = useState(themes.data.light);
-  const [themeLoaded, setThemeLoaded] = useState(false);
+  const allThemes = getFromLS('all-themes');
+  const firstTheme = Object.values(allThemes.data)[1];
+
+  const [actualTheme, setActualTheme] = useState(firstTheme);
+  const [isThemeLoaded, setIsThemeLoaded] = useState(false);
 
   const setMode = (mode) => {
+    console.log('SETMODE', mode);
     setToLS('theme', mode);
-    setTheme(mode);
+    setActualTheme(mode);
   };
 
   const getFonts = () => {
-    const allFonts = _.values(_.mapValues(themes.data, 'font'));
+    const allFonts = _.values(_.mapValues(allThemes.data, 'font'));
     return allFonts;
   };
 
   useEffect(() => {
-    const localTheme = getFromLS('theme');
-    localTheme ? setTheme(localTheme) : setTheme(themes.data.light);
-    setThemeLoaded(true);
+    const localTheme = getFromLS('actual-theme');
+    localTheme ? setActualTheme(localTheme) : setActualTheme(firstTheme);
+    setIsThemeLoaded(true);
   }, []);
 
-  return { theme, themeLoaded, setMode, getFonts };
+  return { actualTheme, isThemeLoaded, setMode, getFonts };
 };

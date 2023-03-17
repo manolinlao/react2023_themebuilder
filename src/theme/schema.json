@@ -1,10 +1,10 @@
 {
   "data" : {
-    "light" : {
+    "mLaoLight" : {
       "id": "T_001",
-      "name": "Light",
+      "name": "mLao Light",
       "colors": {
-        "body": "#FFFFFF",
+        "body": "#FF0000",
         "text": "#000000",
         "button": {
           "text": "#FFFFFF",
@@ -15,13 +15,13 @@
           "opacity": 1
         }
       },
-      "font": "Tinos"
+      "font": "Courier"
     },
-    "seaWave" : {
+    "mLaoSeaWave" : {
       "id": "T_007",
-      "name": "Sea Wave",
+      "name": "mLao Sea Wave",
       "colors": {
-        "body": "#9be7ff",
+        "body": "#00ff00",
         "text": "#0d47a1",
         "button": {
           "text": "#ffffff",

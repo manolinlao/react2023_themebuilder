@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.li`
-  padding: 48px;
+const Wrapper = styled.div`
+  width: 100px;
+  padding: 10px;
   text-align: center;
   border-radius: 4px;
   border: 1px solid #000;
-  list-style: none;
 `;
 
 const ThemedButton = styled.button`
@@ -20,7 +20,7 @@ const ThemedButton = styled.button`
 `;
 
 export const ThemeCard = ({ theme, onClick }) => {
-  console.log(theme);
+  console.log('ThemeCard', theme);
 
   return (
     <Wrapper

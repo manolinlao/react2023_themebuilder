@@ -1,0 +1,13 @@
+.mypanel .p-panel-title{
+  background-color: lightseagreen;
+  color:blue
+}
+
+.mypanel .p-panel-content{
+  background-color: lightgreen;
+  color:darkgoldenrod;
+}
+
+.mypanel .p-panel-header{
+  background-color: brown;
+}
